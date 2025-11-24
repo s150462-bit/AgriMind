@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>طبيب النباتات — النسخة النهائية</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Primary CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest" crossorigin="anonymous"></script>
+  <!-- Fallback CDN (loads only if primary failed) -->
+  <script>
+    (function(){
+      function loadFallback(){
+        var s=document.createElement('script');
+        s.src="https://unpkg.com/@teachablemachine/image@latest/dist/teachablemachine-image.min.js";
+        s.crossOrigin="anonymous";
+        document.head.appendChild(s);
+      }
+      // After 1200ms, if tmImage is still missing, load fallback
+      setTimeout(function(){ if(!window.tmImage){ loadFallback(); } }, 1200);
+    })();
+  </script>
+</head>
+<body>
+  <header class="container">
+    <h1>🌿 طبيب النباتات بالذكاء الاصطناعي — النسخة النهائية</h1>
+    <p>الصقي رابط نموذج Teachable Machine (TensorFlow.js) ثم شغّلي التشخيص.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <label for="modelUrl"><strong>رابط نموذج TM (ينتهي بـ /):</strong></label>
+      <input id="modelUrl" type="url" placeholder="https://teachablemachine.withgoogle.com/models/XXXXXX/" dir="ltr">
+      <div class="rowBtns">
+        <button id="testBtn" class="secondary" disabled>اختبار الرابط</button>
+        <button id="loadModelBtn" disabled>تحميل النموذج</button>
+      </div>
+      <div id="libStatus" class="small mono">جاري تحميل مكتبة Teachable Machine…</div>
+      <div id="testResults" class="small mono"></div>
+      <p id="modelStatus">لم يتم تحميل نموذج بعد.</p>
+    </section>
+
+    <section class="card">
+      <label for="imageInput"><strong>ارفعـي صورة الورقة (PNG/JPG):</strong></label>
+      <input id="imageInput" type="file" accept="image/*">
+      <div id="previewWrap">
+        <img id="preview" alt="معاينة الصورة" />
+      </div>
+      <button id="predictBtn" disabled>تشخيص الصورة</button>
+    </section>
+
+    <section class="card grid">
+      <div>
+        <h2>النتيجة</h2>
+        <div id="result" class="result">—</div>
+        <div id="probs" class="probs"></div>
+      </div>
+      <div>
+        <h2>الخطة العلاجية المقترحة</h2>
+        <div id="plan" class="plan">—</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <small>ملاحظة: لو تعطل التحميل، حدّثي الصفحة تحديثًا قويًا (Ctrl+F5) أو استخدمي نافذة خاصة.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
